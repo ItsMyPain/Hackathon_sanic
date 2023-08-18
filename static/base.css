@@ -1,0 +1,203 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar, html ::-webkit-scrollbar {
+    height: 3px;
+    width: 12px
+}
+
+::-webkit-scrollbar-track, html ::-webkit-scrollbar-track {
+    border-radius: 30px;
+    background: var(--body-bg)
+}
+
+::-webkit-scrollbar-thumb, html ::-webkit-scrollbar-thumb {
+    background-color: var(--header-bg);
+    border-radius: 30px;
+    border: 3px solid var(--body-bg)
+}
+
+body, html {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    background: var(--body-bg);
+    font-family: "Montserrat", arial, sans-serif;
+}
+
+.container {
+    padding: 0 40px;
+}
+
+/*@media (max-width: 1598px) {*/
+/*    .container {*/
+/*        padding: 0 112px;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 1438px) {*/
+/*    .container {*/
+/*        padding: 0 40px;*/
+/*        width: calc(100vw - 40px);*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 1023px) {*/
+/*    .container {*/
+/*        padding: 0 32px;*/
+/*        width: calc(100vw - 32px);*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 767px) {*/
+/*    .container {*/
+/*        padding: 0 24px;*/
+/*        width: calc(100vw - 24px);*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 567px) {*/
+/*    .container {*/
+/*        padding: 0 16px;*/
+/*        width: calc(100vw - 16px);*/
+/*    }*/
+/*}*/
+
+.header {
+    background: var(--header-bg);
+}
+
+.footer .footer-content, .header .header-content {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column
+}
+
+.footer .footer-content .footer-info span, .footer .footer-content .footer-navigation span, .header .header-content .header-top {
+    height: 20px;
+    margin: 5px
+}
+
+.header .header-content .header-top .header-phone {
+    color: var(--header-text);
+    text-decoration: none
+}
+
+.header .header-content .header-bottom {
+    /* height: 50px; */
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+    .header .header-content .header-bottom {
+        flex-direction: column;
+    }
+}
+
+.header .header-content .header-bottom .header-logo {
+    width: 190px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-nav {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 44px;
+    gap: 44px
+}
+
+.header-nav span {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 15px
+}
+
+.header-nav .header-nav-item .badge {
+    position: absolute;
+    bottom: 80%;
+    left: 80%
+}
+
+.header-nav .header-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    background-color: var(--header-bg);
+    border-width: 0;
+    color: var(--second);
+    fill: var(--second);
+    transition: color .3s, fill .3s
+}
+
+.header-nav .header-nav-item:hover {
+    fill: #d9ed4a;
+    color: #d9ed4a;
+    transition: all .3s
+}
+
+.layout {
+    min-height: calc(100vh - 270px);
+    display: flex;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    background: var(--footer-bg);
+}
+
+.footer .footer-content {
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.footer .footer-content .footer-info, .footer .footer-content .footer-navigation {
+    color: var(--footer-text);
+    display: flex;
+    flex-direction: column
+}
+
+.footer .footer-content .footer-info .footer-logo {
+    width: 186px;
+    height: 50px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer .footer-content .footer-navigation {
+    font-weight: 700
+}
+
+.footer .footer-content .footer-info-social {
+    color: var(--footer-text);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    fill: var(--footer-text)
+}
+
+.footer .footer-content .footer-info-social .footer-link {
+    height: 50px;
+    margin: 5px;
+    fill: var(--footer-text)
+}

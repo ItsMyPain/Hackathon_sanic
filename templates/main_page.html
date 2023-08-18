@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/login_registration.css">
+<script src="/static/main_page.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block title %}
+<title>Главная страница</title>
+{% endblock %}
+
+{% block content %}
+<div class="cards-layout" id="cards">
+    <div class="card">
+        <img class="card__image"
+             src="https://storage.yandexcloud.net/public-info/default/catalog/%D0%93%D1%80%D0%B5%D0%B9%D0%BF%D1%84%D1%80%D1%83%D1%82.webp"
+             alt="Изображение товара">
+        <div class="card__container">
+            <div>
+                <p class="card__price">Грейпфрут</p>
+                <p class="card__name">980.01 ₽, 13 г</p>
+            </div>
+            <div class="card__action">
+                <div id="table 318" class="buttons-to-cart">
+                    <button type="button" class="btn btn--green btn--lg" onclick="addCart('318')">
+                        В корзину
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

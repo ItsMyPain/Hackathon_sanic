@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/base.css">
+    {% block styles %}
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Базовый шаблон</title>
+    {% endblock %}
+    <style>:root {
+        --text: #000000;
+        --second: #d21390;
+        --body-bg: #f7f8fc;
+        --footer-bg: #167846;
+        --footer-text: #bcdecd;
+        --header-bg: #167846;
+        --header-text: #bcdecd;
+        --background: #ffffff;
+        --text-header: #000000;
+        --sublight: #27bd97;
+    }</style>
+</head>
+<body>
+<div class="header container">
+    <div class="header-content">
+        <div class="header-top">
+            <a href="tel:+7 (918)-380-20-50" class="header-phone">+7 (918)-380-20-50</a>
+        </div>
+        <div class="header-bottom">
+            <a href="/" class="header-logo">
+                <img src="/static/logo.jpg" alt="Логотип"
+                     style="height: inherit;">
+            </a>
+            <div class="header-nav">
+                <a href="/cart" class="header-nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M4.558 7l4.701-4.702c.199-.198.46-.298.721-.298.613 0 1.02.505 1.02 1.029 0 .25-.092.504-.299.711l-3.26 3.26h-2.883zm12.001 0h2.883l-4.701-4.702c-.199-.198-.46-.298-.721-.298-.613 0-1.02.505-1.02 1.029 0 .25.092.504.299.711l3.26 3.26zm-16.559 2v2h.643c.534 0 1.021.304 1.256.784l4.101 10.216h12l4.102-10.214c.233-.481.722-.786 1.256-.786h.642v-2h-24z"></path>
+                    </svg>
+                    <span>Корзина</span>
+                    <span id="All" class="badge"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layout">
+    {% block content %}
+    {% endblock %}
+</div>
+<div class="footer container">
+    <div class="footer-content">
+        <div class="footer-info">
+            <a href="/" class="footer-logo">
+                <img src="/static/logo.jpg" alt="Логотип"
+                     style="height: inherit;">
+            </a>
+            <span>ООО «Лесной Эльф».</span>
+            <span>Все права защищены.</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

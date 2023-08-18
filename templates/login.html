@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/login_registration.css">
+{% endblock %}
+
+{% block title %}
+<title>Логин</title>
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="title">Вход</div>
+    <div class="form-container">
+        <form method="post">
+            {{ form.csrf_token }}
+            {% if form.csrf_token.errors %}
+            <span class="field-error">You have submitted an invalid CSRF token</span>
+            {% endif %}
+            {% for f in form %}
+            {% if f.id != "csrf_token" %}
+            <label for="{{ f.id }}">{{ f.label }}</label>
+            <div class="field">
+                {{ f }}
+                {% if f.errors -%}
+                <span class="field-error">{{ f.errors[0] }}</span>
+                {%- endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="button-login">
+                <input id="submit" name="submit" type="submit" value="Войти">
+            </div>
+            <div class="link">Не зарегистрированы?
+                <a href="/registration">Зарегистрироваться</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
