@@ -109,3 +109,7 @@ form .button-registration input[type="submit"]:hover {
     display: block;
     margin: 0 0 0 10px;
 }
+
+.face_photo {
+    width: 100%;
+}

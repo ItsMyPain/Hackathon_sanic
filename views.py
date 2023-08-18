@@ -3,13 +3,13 @@ from urllib.parse import unquote
 
 from sanic import Blueprint, Request, redirect
 from sanic_ext import render
-from sqlalchemy import select, or_, insert
+from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from auth import login_user, login_optional
 from forms import LoginForm, RegistrationForm
 from models import Users
-from utils import check_password, hash_password
+from utils import check_password
 
 shop = Blueprint("shop")
 
@@ -29,16 +29,18 @@ async def registration(request: Request):
             if data is not None:
                 form.email.errors.append('Почта или юзернейм уже заняты')
             else:
-                user_id = (
-                    await session.execute(
-                        insert(Users)
-                        .values(username=form.username.data,
-                                email=form.email.data,
-                                password=await hash_password(form.password1.data))
-                        .returning(Users.user_id)
-                    )
-                ).scalar()
-                return await login_user(request, redirect(request.app.url_for('shop.main_page')), user_id)
+                pass
+                # print(form.data)
+        # user_id = (
+        #     await session.execute(
+        #         insert(Users)
+        #         .values(username=form.username.data,
+        #                 email=form.email.data,
+        #                 password=await hash_password(form.password1.data))
+        #         .returning(Users.user_id)
+        #     )
+        # ).scalar()
+        # return await login_user(request, redirect(request.app.url_for('shop.main_page')), user_id)
 
     return await render('registration.html', context=dict(form=form))
 
