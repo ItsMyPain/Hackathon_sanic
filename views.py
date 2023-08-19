@@ -1,7 +1,9 @@
 import json
 from urllib.parse import unquote
 
+import aiofiles
 from sanic import Blueprint, Request, redirect
+from sanic.request import File
 from sanic_ext import render
 from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -17,6 +19,7 @@ shop = Blueprint("shop")
 @shop.route("/registration", methods=['POST', 'GET'])
 async def registration(request: Request):
     form = RegistrationForm(request)
+    file: File = request.files.get('photo')
     if form.validate_on_submit():
         session: AsyncSession = request.ctx.db_session
         async with session.begin():
@@ -29,8 +32,9 @@ async def registration(request: Request):
             if data is not None:
                 form.email.errors.append('Почта или юзернейм уже заняты')
             else:
-                pass
-                # print(form.data)
+                filename = f'{form.username.data}_{file.name}'
+                async with aiofiles.open('photos/' + filename, 'wb') as f:
+                    await f.write(file.body)
         # user_id = (
         #     await session.execute(
         #         insert(Users)

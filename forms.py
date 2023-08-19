@@ -21,5 +21,5 @@ class RegistrationForm(SanicForm):
     password2 = PasswordField(label="Подтверждение пароля", render_kw={"placeholder": "111111"},
                               validators=[EqualTo('password1', 'Пароли не совпадают')])
 
-    photos = FileField(label='Фото вашего лица',
-                       render_kw={"onChange": "myFunc(this)", "accept": "image/png, image/jpeg"})
+    photo = FileField(label='Фото вашего лица',
+                      render_kw={"onChange": "myFunc(this)", "accept": "image/png, image/jpeg"})
