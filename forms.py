@@ -1,5 +1,5 @@
 from sanic_wtf import SanicForm
-from wtforms import PasswordField, StringField, EmailField, MultipleFileField
+from wtforms import PasswordField, StringField, EmailField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo
 
 
@@ -21,5 +21,5 @@ class RegistrationForm(SanicForm):
     password2 = PasswordField(label="Подтверждение пароля", render_kw={"placeholder": "111111"},
                               validators=[EqualTo('password1', 'Пароли не совпадают')])
 
-    photos = MultipleFileField(label='Фото вашего лица',
-                               render_kw={"onChange": "myFunc(this)", "accept": "image/png, image/jpeg"})
+    photos = FileField(label='Фото вашего лица',
+                       render_kw={"onChange": "myFunc(this)", "accept": "image/png, image/jpeg"})
