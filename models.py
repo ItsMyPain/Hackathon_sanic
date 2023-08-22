@@ -17,6 +17,7 @@ class Users(Base):
 
     username: Mapped[str] = mapped_column(VARCHAR(150), nullable=False, unique=True)
     email: Mapped[str] = mapped_column(VARCHAR(150), nullable=False, unique=True)
+    photo: Mapped[str] = mapped_column(VARCHAR(150), nullable=True)
 
     state_id: Mapped[int] = mapped_column(INTEGER, server_default='1')
 

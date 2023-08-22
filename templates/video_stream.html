@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta content="Display Webcam Stream" name="title">
+    <title>Display Webcam Stream</title>
+    <style>
+        body {
+            margin: 30px;
+        }
+
+        h1 {
+            font-family: sans-serif;
+            color: #666;
+        }
+
+        #container {
+            width: 500px;
+            height: 375px;
+            border: 10px #333 solid;
+        }
+
+        #videoElement {
+            width: 500px;
+            height: 375px;
+            background-color: #666;
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px;
+            background-color: white;
+            border: 5px solid black;
+        }
+
+        button:hover {
+            background-color: yellow;
+        }
+
+        button:active {
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+<h1>Проверка веб камеры онлайн</h1>
+<div id="container">
+    <video autoplay id="videoElement">
+    </video>
+</div>
+<button id="stop">Stop Video</button>
+<button id="start">Start Video</button>
+<script>
+    const video = document.querySelector("#videoElement");
+    const stopVideo = document.querySelector("#stop");
+    const startVideo = document.querySelector("#start");
+    stopVideo.addEventListener("click", stop, false);
+    startVideo.addEventListener("click", startWebCam, false);
+
+    function startWebCam() {
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({video: true})
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    }
+
+    function stop(e) {
+        const stream = video.srcObject;
+        const tracks = stream.getTracks();
+
+        for (let i = 0; i < tracks.length; i++) {
+            const track = tracks[i];
+            track.stop();
+        }
+        video.srcObject = null;
+    }
+</script>
+</body>
+</html>

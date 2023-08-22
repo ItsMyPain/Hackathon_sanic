@@ -10,33 +10,33 @@
 
 {% block content %}
 <div class="main-container">
-    <div class="container-left">
-        <div class="list-tab">
-            <h3>Личный кабинет</h3>
-            <a href="#contact" class="list-tab-nav">
-                <span>Информация об ответственном лице</span>
-            </a>
-            <a href="#settings" class="list-tab-nav">
-                <span>Настройки аккаунта</span>
-            </a>
-        </div>
-    </div>
     <div class="container-right">
         <form method="post" class="form-profile-1">
-            <a id="contact"><h3>Информация об аккаунте</h3></a><span>1</span>
+            <h3>Информация об аккаунте</h3>
+            {{ form.csrf_token }}
+            {% for f in form %}
+            {% if f.id != "csrf_token" %}
             <div class="form-profile-1-field">
-                <h6>ФИО<span>*</span></h6>
-                <input id="first_name" name="first_name" type="text" value="Danila">
+                <label for="{{ f.id }}">{{ f.label }}</label>
+                {{ f }}
+                {% if f.errors -%}
+                <span class="field-error">{{ f.errors[0] }}</span>
+                {%- endif %}
             </div>
+            {% endif %}
+            {% endfor %}
+            <input id="info_submit" name="info_submit" type="submit" value="Сохранить">
+        </form>
+        <form method="post" class="form-profile-1">
+            <h3>Ваша фотография для распознавания</h3>
+            {{ photoForm.csrf_token }}
             <div class="form-profile-1-field">
-                <h6>Почта<span>*</span></h6>
-                <input id="email" name="email" type="text" value="agibalov1294@gmail.com">
+                <label for="photo">Обновить фотографию</label>
+                {{photoForm.photo}}
             </div>
-            <div class="form-profile-1-field">
-                <h6>Фото<span>*</span></h6>
-                <input id="index" name="index" type="text" value="">
-            </div>
-            <input id="change_data_submit" name="change_data_submit" type="submit" value="Подтвердить">
+            <img src="/photos/HD%20wallpaper_%20Madara%20statue%20illustration,%20Naruto%20Valley%20of%20the%20End,%20Naruto%20Shippuuden.jfif"
+                 alt="">
+            <input id="change_photo_submit" name="change_data_submit" type="submit" value="Сохранить фото">
         </form>
         <form method="post" class="form-settings">
             <a id="settings"><h3>Настройки аккаунта</h3></a>
