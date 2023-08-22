@@ -40,8 +40,14 @@
             <input id="photo_submit" name="photo_submit" type="submit" value="Сохранить фото">
         </form>
         <form method="post" class="form-settings">
-            <h3>Банковские карты</h3>
-            <p>Скоро...</p>
+            <h3>Привязанная карта</h3>
+            {% if user.payment_method_id %}
+            {{ user.card }}
+            <input id="delete_card" name="delete_card" type="submit" value="Удалить карту">
+            {% else %}
+            <p>Карта еще не привязана</p>
+            <input id="add_card" name="add_card" type="submit" value="Привязать карту">
+            {% endif %}
         </form>
         <form method="post" class="form-settings">
             <h3>Настройки аккаунта</h3>

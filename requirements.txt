@@ -8,3 +8,5 @@ WTForms~=3.0.1
 alembic~=1.11.3
 PyJWT~=2.8.0
 aiofiles~=23.2.1
+yookassa~=2.4.0
+bcrypt==4.0.1

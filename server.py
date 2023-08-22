@@ -6,14 +6,19 @@ from dotenv import load_dotenv, find_dotenv
 from sanic import Sanic, Request, HTTPResponse
 from sanic_ext import render
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from yookassa import Configuration
 
+from admin import admin
 from config import load_config
 from views import shop
 
 load_dotenv(find_dotenv())
 
+Configuration.configure(os.getenv("YOOKASSA_ID"), os.getenv("YOOKASSA_KEY"))
+
 app = Sanic("my_app")
 app.blueprint(shop)
+app.blueprint(admin)
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 app.static('/static', dir_path + r'/static')
