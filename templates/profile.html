@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/profile.css">
+{% endblock %}
+
+{% block title %}
+<title>Профиль {{ username }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="container-left">
+        <div class="list-tab">
+            <h3>Личный кабинет</h3>
+            <a href="#contact" class="list-tab-nav">
+                <span>Информация об ответственном лице</span>
+            </a>
+            <a href="#settings" class="list-tab-nav">
+                <span>Настройки аккаунта</span>
+            </a>
+        </div>
+    </div>
+    <div class="container-right">
+        <form method="post" class="form-profile-1">
+            <a id="contact"><h3>Информация об аккаунте</h3></a><span>1</span>
+            <div class="form-profile-1-field">
+                <h6>ФИО<span>*</span></h6>
+                <input id="first_name" name="first_name" type="text" value="Danila">
+            </div>
+            <div class="form-profile-1-field">
+                <h6>Почта<span>*</span></h6>
+                <input id="email" name="email" type="text" value="agibalov1294@gmail.com">
+            </div>
+            <div class="form-profile-1-field">
+                <h6>Фото<span>*</span></h6>
+                <input id="index" name="index" type="text" value="">
+            </div>
+            <input id="change_data_submit" name="change_data_submit" type="submit" value="Подтвердить">
+        </form>
+        <form method="post" class="form-settings">
+            <a id="settings"><h3>Настройки аккаунта</h3></a>
+            <div class="form-settings-buttons">
+                <input id="logout" name="logout" type="submit" value="Выйти из аккаунта">
+                <input id="delete" name="delete" type="submit" value="Удалить аккаунт">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

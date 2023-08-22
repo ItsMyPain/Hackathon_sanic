@@ -8,7 +8,7 @@ from sanic_ext import render
 from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from auth import login_user, login_optional
+from auth import login_user, login_optional, logout_required, login_required
 from forms import LoginForm, RegistrationForm
 from models import Users
 from utils import check_password
@@ -17,6 +17,7 @@ shop = Blueprint("shop")
 
 
 @shop.route("/registration", methods=['POST', 'GET'])
+@logout_required
 async def registration(request: Request):
     form = RegistrationForm(request)
     file: File = request.files.get('photo')
@@ -32,8 +33,8 @@ async def registration(request: Request):
             if data is not None:
                 form.email.errors.append('Почта или юзернейм уже заняты')
             else:
-                filename = f'{form.username.data}_{file.name}'
-                async with aiofiles.open('photos/' + filename, 'wb') as f:
+                filename = f'photos/{form.username.data}_{file.name}'
+                async with aiofiles.open(filename, 'wb') as f:
                     await f.write(file.body)
         # user_id = (
         #     await session.execute(
@@ -50,6 +51,7 @@ async def registration(request: Request):
 
 
 @shop.route("/login", methods=['POST', 'GET'])
+@logout_required
 async def login(request: Request):
     form = LoginForm(request)
     if form.validate_on_submit():
@@ -73,7 +75,25 @@ async def login(request: Request):
 @login_optional
 async def main_page(request: Request, user_id: int | bool):
     cart_items = json.loads(unquote(request.cookies.get('cart', '{}')))
-    return await render('main_page.html', context=dict(cart=cart_items))
+    username = False
+    if user_id:
+        session: AsyncSession = request.ctx.db_session
+        async with session.begin():
+            username = (
+                await session.execute(select(Users.username).where(Users.user_id == user_id))
+            ).scalar_one()
+    return await render('main_page.html', context=dict(cart=cart_items, username=username))
+
+
+@shop.get("/profile")
+@login_required
+async def profile(request: Request, user_id: int):
+    session: AsyncSession = request.ctx.db_session
+    async with session.begin():
+        username = (
+            await session.execute(select(Users.username).where(Users.user_id == user_id))
+        ).scalar_one()
+    return await render('profile.html', context=dict(username=username))
 
 
 @shop.get("/cart")

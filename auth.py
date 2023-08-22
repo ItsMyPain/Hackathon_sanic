@@ -56,7 +56,7 @@ def logout_required(wrapped: Callable):
             token = request.cookies.get("SANIC_TOKEN", False)
             uid = await check_token(request, token, 'platform', 'user_id')
             if uid:
-                return redirect('/')
+                return redirect(request.app.url_for('shop.main_page'))
             else:
                 return await func(request)
 
