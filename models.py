@@ -1,7 +1,7 @@
 import datetime
 
 from sqlalchemy import func, ForeignKey
-from sqlalchemy.dialects.postgresql import INTEGER, VARCHAR, TIMESTAMP, BYTEA, ARRAY, REAL
+from sqlalchemy.dialects.postgresql import INTEGER, VARCHAR, TIMESTAMP, BYTEA, ARRAY, REAL, TEXT
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -17,7 +17,7 @@ class Users(Base):
 
     username: Mapped[str] = mapped_column(VARCHAR(150), nullable=False, unique=True)
     email: Mapped[str] = mapped_column(VARCHAR(150), nullable=False, unique=True)
-    photo: Mapped[str] = mapped_column(VARCHAR(150), nullable=True)
+    photo: Mapped[str] = mapped_column(TEXT, nullable=True)
 
     state_id: Mapped[int] = mapped_column(INTEGER, server_default='1')
 

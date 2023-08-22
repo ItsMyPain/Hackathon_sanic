@@ -1,4 +1,4 @@
-from sanic_wtf import SanicForm
+from sanic_wtf import SanicForm, FileRequired
 from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 from wtforms import PasswordField, StringField, EmailField, FileField
@@ -29,7 +29,8 @@ class BaseUserForm(SanicForm):
 
 class PhotoForm(SanicForm):
     photo = FileField(label='Фото вашего лица',
-                      render_kw={"onChange": "myFunc(this)", "accept": "image/png, image/jpeg"})
+                      render_kw={"onChange": "myFunc(this)", "accept": "image/png, image/jpeg"},
+                      validators=[FileRequired('Фотография необходима')])
 
 
 class PasswordsForm(SanicForm):

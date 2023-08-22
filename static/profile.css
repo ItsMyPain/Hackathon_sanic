@@ -156,3 +156,7 @@
     color: white;
     transition: all 0.15s ease;
 }
+
+.face_photo {
+    width: 50%;
+}
